@@ -1,29 +1,14 @@
 import server from "./server/Server";
-import MongoDB from "./database/mongo/MongoDB";
-import Product from "./database/mongo/models/Product";
-//
-server.start().then(() => {
-	console.log(`Server running at: ${server.instance.info.uri}`);
-	
-	const db = MongoDB;
+import db from "./database/mongo/MongoDB";
+import ProductService from "./product/services/ProductService";
 
-	db.connect();
-	
-	db.connection.on('error', console.error.bind(console, 'connection error:'));
-	db.connection.once('open', function() {
-		console.log("Conectado ao MongoDB!");
+db.connect();
 
-		Product.create({
-			name: "teste",
-      category: "teste",
-      price: 231,
-      model: "sei la",
-      description: "Um teste daora",
-      photos: [{
-        title: "Foto",
-        url: "asd"
-      }]
-		}).then(product => console.log(product))
-		.catch(err => console.error(err));
+db.connection.on('error', console.error.bind(console, 'connection error:'));
+db.connection.once('open', function() {
+	console.log("Conectado ao MongoDB!");
+	server.start().then(() => {
+		console.log(`Server running at: ${server.instance.info.uri}`);
+		ProductService.findAll().then(products => console.log(products));
 	});
 });
