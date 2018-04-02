@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-class Mongoose {
+class MongoDB {
   
   _host;
   _database;
@@ -13,7 +13,6 @@ class Mongoose {
   }
 
   connect() {
-    console.log(`mongodb://${this._host}:${this._port}/${this._database}`);
     return mongoose.connect(`mongodb://${this._host}:${this._port}/${this._database}`);
   }
 
@@ -24,7 +23,7 @@ class Mongoose {
   get connection() {
     return mongoose.connection;
   }
-
+  
 }
 
-export default Mongoose;
+export default new MongoDB();
