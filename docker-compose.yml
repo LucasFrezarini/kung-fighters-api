@@ -5,7 +5,18 @@ services:
     image: lfrezarini/kungfighters
     container_name: kungfighters_server
     ports: 
-      - 3000:3000
+      - ${SERVER_PORT}:${SERVER_PORT}
     volumes:
       - ./src:/app/src
+    env_file: .env
+  db:
+    image: mongo:3.6.3
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo_data:/data/db
+volumes:
+  mongo_data:
+
     

@@ -1,18 +1,15 @@
-import Hapi from "hapi";
-
-const server = Hapi.server({
-    port: 3000
-});
-
-server.route({
-    method: 'GET',
-    path: '/{name}',
-    handler: (request, h) => {
-
-        return 'Hello, ' + encodeURIComponent(request.params.name) + '!';
-    }
-});
+import server from "./server/Server";
+import Mongoose from "./database/mongoose/Mongoose";
 
 server.start().then(() => {
-    console.log(`Server running at: ${server.info.uri}`);
+	console.log(`Server running at: ${server.instance.info.uri}`);
+	
+	const db = new Mongoose();
+//
+	db.connect();
+	
+	db.connection.on('error', console.error.bind(console, 'connection error:'));
+	db.connection.once('open', function() {
+		console.log("Conectado ao MongoDB!");
+	});
 });
