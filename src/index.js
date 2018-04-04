@@ -1,6 +1,6 @@
 import server from "./server/Server";
 import db from "./database/mongo/MongoDB";
-import ProductService from "./product/services/ProductService";
+import ProductService from "./product/ProductService";
 
 db.connect();
 

@@ -1,4 +1,4 @@
-import Product from "../../database/mongo/models/Product";
+import Product from "../database/mongo/models/Product";
 
 class ProductService {
 
@@ -18,8 +18,11 @@ class ProductService {
     return Product.find({});
   }
 
-  findOneById(id) {}
-  findOneBy(criteria) {}
+  findById(id) {}
+
+  findBy(criteria) {
+    return Product.find(criteria);
+  }
 
 }
 

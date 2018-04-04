@@ -21,7 +21,9 @@
     "nodemon": "^1.17.3"
   },
   "dependencies": {
+    "boom": "^7.2.0",
     "hapi": "^17.3.0",
+    "joi": "^13.1.2",
     "mongoose": "^5.0.12"
   }
 }
