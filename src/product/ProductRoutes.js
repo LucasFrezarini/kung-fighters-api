@@ -1,5 +1,5 @@
 import Joi from "joi";
-import ProductController from "../product/ProductController";
+import ProductController from "./ProductController";
 
 const routes = [
   {
