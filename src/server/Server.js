@@ -23,7 +23,8 @@ class Server {
               throw err;
             }
           }
-        }
+        },
+        cors: true
       }
     }
 
