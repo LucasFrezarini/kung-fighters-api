@@ -9,6 +9,5 @@ db.connection.once('open', function() {
 	console.log("Conectado ao MongoDB!");
 	server.start().then(() => {
 		console.log(`Server running at: ${server.instance.info.uri}`);
-		ProductService.findAll().then(products => console.log(products));
 	});
 });

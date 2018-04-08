@@ -1,7 +1,12 @@
 import productRoutes from "../../product/ProductRoutes";
 
-let routes = [];
+function loadRoutes() {
+  let routes = [];
 
-routes.concat(productRoutes);
+  routes = routes.concat(productRoutes);
 
-export default routes;
+  return routes;
+}
+
+
+export default loadRoutes();
