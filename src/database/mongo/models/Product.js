@@ -14,8 +14,11 @@ class Product extends Model {
         required: true
       },
       category: {
-        type: String,
-        required: true
+        name: {
+          type: String,
+          required: true
+        },
+        subcategory: String
       },
       price: {
         type: Number,
@@ -31,13 +34,21 @@ class Product extends Model {
         url: {
           type: String,
           required: true
+        },
+        mainPhoto: {
+          type: Boolean,
+          default: false
         }
       }],
       deleted: {
         type: Boolean,
         default: false
+      },
+      featured: {
+        type: Boolean,
+        default: false
       }
-    })
+    }, {timestamps: true})
   }
 
   getCollectionName() {

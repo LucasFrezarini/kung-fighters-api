@@ -5,7 +5,22 @@ const routes = [
   {
     method: 'GET',
     path: '/public/product',
-    handler: ProductController.getPublicProductList
+    handler: ProductController.getPublicProductList,
+    options: {
+      validate: {
+        query: {
+          name: Joi.string().optional(),
+          category: Joi.string().optional(),
+          subcategory: Joi.string().optional(),
+          featured: Joi.boolean().optional(),
+          price: Joi.object().keys({
+            min: Joi.number().optional(),
+            max: Joi.number().optional()
+          }).optional(),
+          model: Joi.optional()
+        }
+      }
+    }
   },
   {
     method: 'POST',
@@ -16,10 +31,14 @@ const routes = [
           payload: {
             product: {
               name: Joi.string().min(3).required(),
-              category: Joi.string().required(),
+              category: Joi.object().keys({
+                name: Joi.string().required(),
+                subcategory: Joi.string().optional()
+              }).required(),
               price: Joi.number().required(),
               model: Joi.optional(),
               description: Joi.optional(),
+              featured: Joi.boolean().optional(),
               photos: Joi.array().items([{
                 title: Joi.string().required(),
                 url: Joi.string().required()

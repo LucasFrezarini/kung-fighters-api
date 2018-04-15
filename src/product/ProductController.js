@@ -1,5 +1,6 @@
 import hapi from "hapi";
 import ProductService from "./ProductService";
+import _ from "lodash";
 
 class ProductController {
 
@@ -9,12 +10,22 @@ class ProductController {
    * @param { hapi.ResponseToolkit } res 
    */
   getPublicProductList(req, res) {
-    return ProductService.findBy({
+    let filters = {
+      name:     req.query.name ? new RegExp(req.query.name, "i") : null,
+      model:    req.query.model? new RegExp(req.query.model, "i") : null,
+      'category.name': req.query.category ? new RegExp(req.query.category, "i") : null,
+      'category.subcategory': req.query.subcategory? new RegExp(req.query.subcategory, "i") : null,
+      featured: req.query.featured,
       $or: [
         {deleted: undefined},
         {deleted: false}
       ]
-    }).then(products => res.response(products).type('application/json'));
+    }
+
+    /* Retira os filtros vazios */
+    filters = _.pickBy(filters, _.identity);
+ 
+    return ProductService.findBy(filters).then(products => res.response(products).type('application/json'));
   }
 
   /**
