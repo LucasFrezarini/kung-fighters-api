@@ -17,7 +17,9 @@ const routes = [
             min: Joi.number().optional(),
             max: Joi.number().optional()
           }).optional(),
-          model: Joi.optional()
+          model: Joi.optional(),
+          minDate: Joi.date().optional(),
+          maxDate: Joi.date().optional()
         }
       }
     }

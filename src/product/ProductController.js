@@ -21,6 +21,10 @@ class ProductController {
       'category.name': req.query.category ? new RegExp(req.query.category, "i") : null,
       'category.subcategory': req.query.subcategory? new RegExp(req.query.subcategory, "i") : null,
       featured: req.query.featured,
+      createdAt: {
+        $gte: req.query.minDate ? req.query.minDate : new Date(1986, 1, 1),
+        $lte: req.query.maxDate ? req.query.maxDate : new Date(2599, 1, 1)
+      },
       $or: [
         {deleted: undefined},
         {deleted: false}
