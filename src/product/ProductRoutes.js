@@ -47,6 +47,23 @@ const routes = [
           }
       }
     }
+  },
+  {
+    method: 'POST',
+    path: '/product/upload/image',
+    handler: ProductController.uploadImage,
+    options: {
+      validate: {
+        payload: {
+          image: Joi.required()
+        }
+      },
+      payload: {
+        output: 'stream',
+        allow: 'multipart/form-data',
+        parse: true
+      }
+    }
   }
 ]
 
