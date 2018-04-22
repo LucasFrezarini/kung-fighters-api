@@ -19,7 +19,10 @@ const routes = [
           }).optional(),
           model: Joi.optional(),
           minDate: Joi.date().optional(),
-          maxDate: Joi.date().optional()
+          maxDate: Joi.date().optional(),
+          order: Joi.string().valid('create_date', 'price').optional(),
+          page: Joi.number().default(1).optional(),
+          registersPerPage: Joi.number().default(25).optional()
         }
       }
     }

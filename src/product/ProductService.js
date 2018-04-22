@@ -20,8 +20,12 @@ class ProductService {
 
   findById(id) {}
 
-  findBy(criteria) {
-    return Product.find(criteria);
+  findBy(criteria, columns = [], options = {}) {
+    return Product.find(criteria, columns, options);
+  }
+
+  getTotalProducts(criteria) {
+    return Product.count(criteria);
   }
 
 }

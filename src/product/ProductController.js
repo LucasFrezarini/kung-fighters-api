@@ -14,7 +14,7 @@ class ProductController {
    * @param { hapi.Request } req 
    * @param { hapi.ResponseToolkit } res 
    */
-  getPublicProductList(req, res) {
+  async getPublicProductList(req, res) {
     let filters = {
       name:     req.query.name ? new RegExp(req.query.name, "i") : null,
       model:    req.query.model? new RegExp(req.query.model, "i") : null,
@@ -31,12 +31,37 @@ class ProductController {
       ]
     }
 
+    const registersPerPage = req.query.registersPerPage;
+    const page             = req.query.page;
+
+    let fieldsSort = {};
+    let sort = req.query.order;
+
+    if(sort == "create_date") {
+      fieldsSort.createdAt = -1;
+    }
+
     /* Retira os filtros vazios */
     filters = _.pickBy(filters, _.identity);
- 
-    return ProductService.findBy(filters)
-      .then(products => res.response(products).type('application/json'))
-      .catch(err => Boom.internal("Erro interno de servidor"));
+
+    const skip  = registersPerPage * (page - 1);
+
+    try {
+      const products = await ProductService.findBy(filters, {}, {skip: skip, limit: registersPerPage, sort: fieldsSort});
+      const totalProducts = await ProductService.getTotalProducts(filters);
+      const totalPages = Math.ceil(totalProducts / registersPerPage);
+  
+      return res.response({
+        page: page,
+        registersPerPage: registersPerPage,
+        totalPages: totalPages,
+        totalProducts: totalProducts,
+        products: products
+      }).type('application/json')
+    } catch (error) {
+      console.error(error);
+      throw Boom.internal("Erro interno de servidor!");
+    }
   }
 
   /**

@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+
 import server from "./server/Server";
 import db from "./database/mongo/MongoDB";
 import ProductService from "./product/ProductService";
