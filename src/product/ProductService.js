@@ -18,7 +18,9 @@ class ProductService {
     return Product.find({});
   }
 
-  findById(id) {}
+  findById(id) {
+    return Product.findById(id);
+  }
 
   findBy(criteria, columns = [], options = {}) {
     return Product.find(criteria, columns, options);

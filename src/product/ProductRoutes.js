@@ -28,6 +28,11 @@ const routes = [
     }
   },
   {
+    method: 'GET',
+    path: '/public/product/{id}',
+    handler: ProductController.getPublicProductInfo
+  },
+  {
     method: 'POST',
     path: '/product',
     handler: ProductController.newProduct,

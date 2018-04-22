@@ -86,6 +86,23 @@ class ProductController {
    * @param { hapi.Request } req 
    * @param { hapi.ResponseToolkit } res 
    */
+  getPublicProductInfo(req, res) {
+    const id = req.params.id;
+
+    return ProductService.findById(id)
+      .then(product => res.response(product))
+      .catch(err => {
+        console.error(err);
+        throw Boom.internal("Erro interno de servidor!");
+      })
+
+  }
+
+  /**
+   * 
+   * @param { hapi.Request } req 
+   * @param { hapi.ResponseToolkit } res 
+   */
   uploadImage(req, res) {
     const data = req.payload;
 
