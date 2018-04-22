@@ -1,4 +1,5 @@
 import Hapi   from "hapi";
+import inert  from "inert";
 import routes from "./routes/routes";
 
 class Server {
@@ -29,6 +30,9 @@ class Server {
     }
 
     this._server = Hapi.server(hapiOptions);
+    this._server.register([
+      inert
+    ]);
 
     this._loadRoutes();
   }

@@ -60,13 +60,11 @@ class ProductController {
   uploadImage(req, res) {
     const data = req.payload;
 
-    console.log(data);
-
     if(data.image) {
       const extension = data.image.hapi.filename.split('.').slice(1).join(".");
 
       const name = crypto.createHash('md5')
-        .update(data.image.hapi.filename)
+        .update(data.image.hapi.filename + Date.now())
         .digest("hex");
 
       const path = `/app/upload/${name}.${extension}`;
@@ -88,6 +86,7 @@ class ProductController {
 
           const ret = {
             filename: data.image.hapi.filename,
+            path: `/product/images/${name}.${extension}`,
             headers: data.image.hapi.headers
           }
 
