@@ -1,4 +1,5 @@
 import FileHandler from "./FileHandler";
+import Joi         from "joi";
 
 const routes = [
   {
@@ -10,7 +11,13 @@ const routes = [
       }
     },
     options: {
-      tags: ['api']
+      validate: {
+        params: {
+          filename: Joi.string().required()
+        }
+      },
+      tags: ['api', 'static', 'public'],
+      description: "Retorna uma imagem que foi feita upload do produto"
     }
   }
 ]

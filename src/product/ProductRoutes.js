@@ -25,7 +25,8 @@ const routes = [
           registersPerPage: Joi.number().default(25).optional()
         }
       },
-      tags: ['api']
+      tags: ['api', 'public', 'product'],
+      description: "Retorna uma lista pública páginada dos produtos cadastrados no sistema"
     }
   },
   {
@@ -38,7 +39,8 @@ const routes = [
           id: Joi.string().required()
         }
       },
-      tags: ['api']
+      tags: ['api', 'public', 'product'],
+      description: "Retorna os detalhes de um produto específico"
     }
   },
   {
@@ -68,7 +70,8 @@ const routes = [
           } 
         }
       },
-      tags: ['api']
+      tags: ['api', 'product', 'management'],
+      description: "Altera um produto cadastrado no sistema. Todos os dados devem ser repassados novamente"
     }
   },
   {
@@ -98,7 +101,8 @@ const routes = [
           } 
         }
       },
-      tags: ['api']
+      tags: ['api', 'product', 'management'],
+      description: "Altera um produto cadastrado no sistema. Somente os campos que se deseja alterar deve ser enviado"
     }
   },
   {
@@ -125,7 +129,8 @@ const routes = [
             } 
           }
       },
-      tags: ['api']
+      tags: ['api', 'management'],
+      description: "Cria um novo produto no sistema"
     }
   },
   {
@@ -143,7 +148,8 @@ const routes = [
         allow: 'multipart/form-data',
         parse: true
       },
-      tags: ['api']
+      tags: ['api', 'management', 'upload'],
+      description: "Realiza o upload de uma imagem do produto no servidor"
     },
   }
 ]
