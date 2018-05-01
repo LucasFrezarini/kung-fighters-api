@@ -103,6 +103,23 @@ class ProductController {
    * @param { hapi.Request } req 
    * @param { hapi.ResponseToolkit } res 
    */
+  updateProduct(req, res) {
+    const id      = req.params.id;
+    const product = req.payload.product; 
+
+    return ProductService.update(id, product)
+      .then(product => res.response({msg: "Produto alterado com sucesso!"}).state(200))
+      .catch(err => {
+        console.error(err);
+        throw Boom.internal("Erro interno de servidor!");
+      })
+  }
+
+  /**
+   * 
+   * @param { hapi.Request } req 
+   * @param { hapi.ResponseToolkit } res 
+   */
   uploadImage(req, res) {
     const data = req.payload;
 

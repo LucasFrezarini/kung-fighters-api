@@ -42,6 +42,66 @@ const routes = [
     }
   },
   {
+    method: 'PUT',
+    path: '/product/{id}',
+    handler: ProductController.updateProduct,
+    options: {
+      validate: {
+        params: {
+          id: Joi.string().required()
+        },
+        payload: {
+          product: {
+            name: Joi.string().min(3).required(),
+            category: Joi.object().keys({
+              name: Joi.string().required(),
+              subcategory: Joi.string().optional()
+            }).required(),
+            price: Joi.number().required(),
+            model: Joi.optional(),
+            description: Joi.optional(),
+            featured: Joi.boolean().optional(),
+            photos: Joi.array().items([{
+              title: Joi.string().required(),
+              url: Joi.string().required()
+            }])
+          } 
+        }
+      },
+      tags: ['api']
+    }
+  },
+  {
+    method: 'PATCH',
+    path: '/product/{id}',
+    handler: ProductController.updateProduct,
+    options: {
+      validate: {
+        params: {
+          id: Joi.string().required()
+        },
+        payload: {
+          product: {
+            name: Joi.string().min(3).optional(),
+            category: Joi.object().keys({
+              name: Joi.string().optional(),
+              subcategory: Joi.string().optional()
+            }).optional(),
+            price: Joi.number().optional(),
+            model: Joi.optional(),
+            description: Joi.optional(),
+            featured: Joi.boolean().optional(),
+            photos: Joi.array().items([{
+              title: Joi.string().optional(),
+              url: Joi.string().optional()
+            }])
+          } 
+        }
+      },
+      tags: ['api']
+    }
+  },
+  {
     method: 'POST',
     path: '/product',
     handler: ProductController.newProduct,
