@@ -120,6 +120,22 @@ class ProductController {
    * @param { hapi.Request } req 
    * @param { hapi.ResponseToolkit } res 
    */
+  deleteProduct(req, res) {
+    const id      = req.params.id;
+
+    return ProductService.delete(id)
+      .then(product => res.response({msg: "Produto removido com sucesso!"}).state(200))
+      .catch(err => {
+        console.error(err);
+        throw Boom.internal("Erro interno de servidor!");
+      })
+  }  
+
+  /**
+   * 
+   * @param { hapi.Request } req 
+   * @param { hapi.ResponseToolkit } res 
+   */
   uploadImage(req, res) {
     const data = req.payload;
 

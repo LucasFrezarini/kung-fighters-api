@@ -11,7 +11,9 @@ class ProductService {
   }
 
   delete(id) {
-    return Product.findByIdAndRemove(id);
+    return Product.findByIdAndUpdate(id, {
+      "deleted": true
+    });
   }
 
   findAll() {

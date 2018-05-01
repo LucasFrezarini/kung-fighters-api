@@ -134,6 +134,20 @@ const routes = [
     }
   },
   {
+    method: 'DELETE',
+    path: '/product/{id}',
+    handler: ProductController.deleteProduct,
+    options: {
+      validate: {
+          params: {
+            id: Joi.string().required()
+          }
+      },
+      tags: ['api', 'management'],
+      description: "Exclui um produto do sistema"
+    },
+  },
+  {
     method: 'POST',
     path: '/product/upload/image',
     handler: ProductController.uploadImage,
