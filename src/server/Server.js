@@ -3,6 +3,8 @@ import inert    from "inert";
 import vision   from "vision";
 import routes   from "./routes/routes";
 import swagger  from "hapi-swagger"; 
+import jwt      from "hapi-auth-jwt2";
+import auth     from "../auth/Auth";
 
 class Server {
   
@@ -43,13 +45,22 @@ class Server {
     this._server.register([
       inert,
       vision,
+      jwt,
       {
         plugin: swagger,
         options: swaggerOptions
       }
-    ]);
+    ]).then(() => {
+      this._server.auth.strategy('jwt', 'jwt', {
+        key: "ChaveSecreta",
+        validate: auth.validate,
+        verifyOptions: { algorithms: [ 'HS256' ] }
+      });
 
-    this._loadRoutes();
+      this._server.auth.default('jwt');
+
+      this._loadRoutes();
+    }).catch(err => console.error(err));
   }
 
   _loadRoutes() {

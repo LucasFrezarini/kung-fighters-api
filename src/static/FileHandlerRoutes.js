@@ -17,7 +17,8 @@ const routes = [
         }
       },
       tags: ['api', 'static', 'public'],
-      description: "Retorna uma imagem que foi feita upload do produto"
+      description: "Retorna uma imagem que foi feita upload do produto",
+      auth: false
     }
   }
 ]

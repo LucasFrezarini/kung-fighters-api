@@ -26,7 +26,8 @@ const routes = [
         }
       },
       tags: ['api', 'public', 'product'],
-      description: "Retorna uma lista pública páginada dos produtos cadastrados no sistema"
+      description: "Retorna uma lista pública páginada dos produtos cadastrados no sistema",
+      auth: false
     }
   },
   {
@@ -40,7 +41,8 @@ const routes = [
         }
       },
       tags: ['api', 'public', 'product'],
-      description: "Retorna os detalhes de um produto específico"
+      description: "Retorna os detalhes de um produto específico",
+      auth: false
     }
   },
   {
@@ -52,6 +54,9 @@ const routes = [
         params: {
           id: Joi.string().required()
         },
+        headers: Joi.object({
+          Authorization: Joi.string()
+        }).unknown(),
         payload: {
           product: {
             name: Joi.string().min(3).required(),
@@ -80,6 +85,9 @@ const routes = [
     handler: ProductController.updateProduct,
     options: {
       validate: {
+        headers: Joi.object({
+          Authorization: Joi.string()
+        }).unknown(),
         params: {
           id: Joi.string().required()
         },
@@ -111,6 +119,9 @@ const routes = [
     handler: ProductController.newProduct,
     options: {
       validate: {
+          headers: Joi.object({
+            Authorization: Joi.string()
+          }).unknown(),
           payload: {
             product: {
               name: Joi.string().min(3).required(),
@@ -139,6 +150,9 @@ const routes = [
     handler: ProductController.deleteProduct,
     options: {
       validate: {
+          headers: Joi.object({
+            Authorization: Joi.string()
+          }).unknown(),
           params: {
             id: Joi.string().required()
           }
@@ -153,6 +167,9 @@ const routes = [
     handler: ProductController.uploadImage,
     options: {
       validate: {
+        headers: Joi.object({
+          Authorization: Joi.string()
+        }).unknown(),
         payload: {
           image: Joi.required()
         }
