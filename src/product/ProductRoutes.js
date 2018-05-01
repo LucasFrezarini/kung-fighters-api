@@ -33,6 +33,11 @@ const routes = [
     path: '/public/product/{id}',
     handler: ProductController.getPublicProductInfo,
     options: {
+      validate: {
+        params: {
+          id: Joi.string().required()
+        }
+      },
       tags: ['api']
     }
   },
