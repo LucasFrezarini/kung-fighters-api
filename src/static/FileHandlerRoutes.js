@@ -8,6 +8,9 @@ const routes = [
       file: function(req) {
         return `/app/upload/${req.params.filename}`
       }
+    },
+    options: {
+      tags: ['api']
     }
   }
 ]

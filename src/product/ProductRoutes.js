@@ -24,13 +24,17 @@ const routes = [
           page: Joi.number().default(1).optional(),
           registersPerPage: Joi.number().default(25).optional()
         }
-      }
+      },
+      tags: ['api']
     }
   },
   {
     method: 'GET',
     path: '/public/product/{id}',
-    handler: ProductController.getPublicProductInfo
+    handler: ProductController.getPublicProductInfo,
+    options: {
+      tags: ['api']
+    }
   },
   {
     method: 'POST',
@@ -55,7 +59,8 @@ const routes = [
               }])
             } 
           }
-      }
+      },
+      tags: ['api']
     }
   },
   {
@@ -72,8 +77,9 @@ const routes = [
         output: 'stream',
         allow: 'multipart/form-data',
         parse: true
-      }
-    }
+      },
+      tags: ['api']
+    },
   }
 ]
 

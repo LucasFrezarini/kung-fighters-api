@@ -1,6 +1,8 @@
-import Hapi   from "hapi";
-import inert  from "inert";
-import routes from "./routes/routes";
+import Hapi     from "hapi";
+import inert    from "inert";
+import vision   from "vision";
+import routes   from "./routes/routes";
+import swagger  from "hapi-swagger"; 
 
 class Server {
   
@@ -29,9 +31,22 @@ class Server {
       }
     }
 
+    const swaggerOptions = {
+      info: {
+        title: "Kung Fighters API documentation",
+        version: '0.1'
+      },
+      host: `localhost:${process.env.SERVER_PORT}`
+    }
+
     this._server = Hapi.server(hapiOptions);
     this._server.register([
-      inert
+      inert,
+      vision,
+      {
+        plugin: swagger,
+        options: swaggerOptions
+      }
     ]);
 
     this._loadRoutes();
