@@ -13,7 +13,7 @@ class UserController {
     const user = req.payload.user;
 
     return UserService.createUser(user.username, user.password, user.role)
-      .then(user => res.response({msg: "Usuário cadastrado com sucesso!"}).state(201))
+      .then(user => res.response({msg: "Usuário cadastrado com sucesso!"}).code(201))
       .catch(err => {
         console.log(err);
         Boom.internal("Erro interno de servidor!");

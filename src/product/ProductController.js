@@ -74,10 +74,10 @@ class ProductController {
     const product = req.payload.product;
 
     return ProductService.create(product)
-      .then(product => res.response({msg: "Produto criado com sucesso!", product: product}).state(201))
+      .then(product => res.response({msg: "Produto criado com sucesso!", product: product}).code(201))
       .catch(err => {
         console.error(err);
-        res.response({msg: "Ocorreu um erro ao cadastrar o produto!"}).state(500);
+        res.response({msg: "Ocorreu um erro ao cadastrar o produto!"}).code(500);
       });
   }
 
@@ -108,7 +108,7 @@ class ProductController {
     const product = req.payload.product; 
 
     return ProductService.update(id, product)
-      .then(product => res.response({msg: "Produto alterado com sucesso!"}).state(200))
+      .then(product => res.response({msg: "Produto alterado com sucesso!"}).code(200))
       .catch(err => {
         console.error(err);
         throw Boom.internal("Erro interno de servidor!");
@@ -124,7 +124,7 @@ class ProductController {
     const id      = req.params.id;
 
     return ProductService.delete(id)
-      .then(product => res.response({msg: "Produto removido com sucesso!"}).state(200))
+      .then(product => res.response({msg: "Produto removido com sucesso!"}).code(200))
       .catch(err => {
         console.error(err);
         throw Boom.internal("Erro interno de servidor!");
