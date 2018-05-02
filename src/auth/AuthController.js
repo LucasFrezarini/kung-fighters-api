@@ -1,6 +1,7 @@
 import hapi         from "hapi";
 import jsonWebToken from "jsonwebtoken";
 import UserService  from "../user/UserService";
+import Boom         from "boom";
 
 class AuthController {
 
@@ -13,13 +14,18 @@ class AuthController {
     const username = req.payload.username;
     const password = req.payload.password;
 
-    const login = await UserService.login(username, password);    
+    try {
+      const login = await UserService.login(username, password);    
 
-    if(!login.success) return res.response({msg: "Credenciais inválidas!"}).code(401);
+      if(!login.success) return res.response({msg: "Credenciais inválidas!"}).code(401);
 
-    const token = await jsonWebToken.sign(login.data, "ChaveSecreta", { algorithm: 'HS256'});
+      const token = await jsonWebToken.sign(login.data, "ChaveSecreta", { algorithm: 'HS256'});
 
-    return res.response({msg: "Autorizado", token: token});
+      return res.response({msg: "Autorizado", token: token});
+    } catch (err) {
+      console.error(err);
+      return Boom.internal("Erro interno de servidor!");
+    }
   }
 
 }

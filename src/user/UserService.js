@@ -22,18 +22,23 @@ class UserService {
   }
 
   async login(username, password) {
-    const user = await User.findOne({username: username});
-    
-    if(!user) return {success: false, reason: "O usuário não existe no banco"};
-    
-    const validPassword = await bcrypt.compare(password, user.password)
-
-    if(validPassword) {
-      return {success: true, data: {username: user.username, role: username.role}};
-    }
+    try {
+      const user = await User.findOne({username: username});
       
+      if(!user) return {success: false, reason: "O usuário não existe no banco"};
+      
+      const validPassword = await bcrypt.compare(password, user.password)
 
-    return {success: false, reason: "Senha inválida"}
+      if(validPassword) {
+        return {success: true, data: {username: user.username, role: user.role}};
+      }
+        
+
+      return {success: false, reason: "Senha inválida"}
+    } catch (error) {
+      console.error(error);
+      throw new Error("Erro ao realizar o login do usuário!");
+    }
   }
 
 
