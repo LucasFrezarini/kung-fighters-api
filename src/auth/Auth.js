@@ -1,6 +1,4 @@
 class Auth {
-
-
   async validate(decoded, request) {
     console.log(decoded);
     return {isValid: true};

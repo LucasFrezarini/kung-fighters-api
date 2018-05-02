@@ -2,7 +2,7 @@ import jsonWebToken from "jsonwebtoken";
 
 class AuthController {
 
-  async getToken() {
+  async getToken(req, res) {
     const obj = {teste: "sou"};
     return await jsonWebToken.sign(obj, "ChaveSecreta", { algorithm: 'HS256'})
   }
