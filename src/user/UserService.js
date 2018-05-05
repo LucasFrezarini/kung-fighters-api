@@ -21,6 +21,14 @@ class UserService {
     }
   }
 
+  async exists(id) {
+    const user = await User.findById(id);
+
+    if(user) return true;
+
+    return false;
+  }
+
   async login(username, password) {
     try {
       const user = await User.findOne({username: username});
@@ -30,7 +38,7 @@ class UserService {
       const validPassword = await bcrypt.compare(password, user.password)
 
       if(validPassword) {
-        return {success: true, data: {username: user.username, role: user.role}};
+        return {success: true, data: {id: user._id, username: user.username, role: user.role}};
       }
         
 
