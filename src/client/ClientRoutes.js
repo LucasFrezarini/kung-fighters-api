@@ -23,6 +23,22 @@ const routes = [
       description: "Cadastra um novo cliente",
       auth: false
     }
+  },
+  {
+    method: 'POST',
+    path: '/client/login',
+    handler: ClientController.login,
+    options: {
+      validate: {
+        payload: {
+          email: Joi.string().min(3).required(),
+          password: Joi.string().required()
+        }
+      },
+      tags: ['api', 'client'],
+      description: "Realiza o login de um cliente no sistema",
+      auth: false
+    }
   }
 ];
 

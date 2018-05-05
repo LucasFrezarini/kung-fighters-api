@@ -53,7 +53,7 @@ class Server {
     ]).then(() => {
       this._server.auth.strategy('jwt', 'jwt', {
         key: process.env.SECRET_KEY,
-        validate: auth.validate,
+        validate: auth.validate.bind(auth),
         verifyOptions: { algorithms: [ 'HS256' ] }
       });
 

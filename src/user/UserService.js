@@ -11,7 +11,7 @@ class UserService {
       const user = {
         username: username,
         password: hashedPassword,
-        role: role
+        scope: role
       }
 
       return User.create(user);
@@ -38,7 +38,7 @@ class UserService {
       const validPassword = await bcrypt.compare(password, user.password)
 
       if(validPassword) {
-        return {success: true, data: {id: user._id, username: user.username, role: user.role}};
+        return {success: true, data: {id: user._id, username: user.username, scope: user.scope}};
       }
         
 

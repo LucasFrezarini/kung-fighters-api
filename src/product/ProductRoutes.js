@@ -76,7 +76,11 @@ const routes = [
         }
       },
       tags: ['api', 'product', 'management'],
-      description: "Altera um produto cadastrado no sistema. Todos os dados devem ser repassados novamente"
+      description: "Altera um produto cadastrado no sistema. Todos os dados devem ser repassados novamente",
+      auth: {
+        strategy: "jwt",
+        scope: ['admin']
+      }
     }
   },
   {
@@ -141,7 +145,11 @@ const routes = [
           }
       },
       tags: ['api', 'management'],
-      description: "Cria um novo produto no sistema"
+      description: "Cria um novo produto no sistema",
+      auth: {
+        strategy: "jwt",
+        scope: ['admin']
+      }
     }
   },
   {

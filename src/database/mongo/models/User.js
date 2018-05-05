@@ -17,7 +17,7 @@ class User extends Model {
         type: String,
         required: true
       },
-      role: {
+      scope: {
         type: String,
         required: true
       },

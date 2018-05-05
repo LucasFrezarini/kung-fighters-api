@@ -19,6 +19,8 @@ class AuthController {
 
       if(!login.success) return res.response({msg: "Credenciais inválidas!"}).code(401);
 
+      console.log(login.data);
+
       const token = await Auth.generateToken(login.data);
 
       return res.response({msg: "Autorizado", token: token});
