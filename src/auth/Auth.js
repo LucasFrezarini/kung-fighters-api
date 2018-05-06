@@ -20,10 +20,6 @@ class Auth {
     return await jsonWebToken.sign(data, process.env.SECRET_KEY, { algorithm: 'HS256'});
   }
 
-  async decodeToken(token) {
-    return jsonWebToken.decode(token);
-  }
-
   async _validateUserToken(decoded, request) {
     try {
       const exists = await UserService.exists(decoded.id);

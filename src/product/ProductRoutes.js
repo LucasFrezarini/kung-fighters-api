@@ -27,6 +27,7 @@ const routes = [
       },
       tags: ['api', 'public', 'product'],
       description: "Retorna uma lista pública páginada dos produtos cadastrados no sistema",
+      notes: "Traz uma lista de produtos cadastrados no sistema, com diversas opções de filtros",
       auth: false
     }
   },
@@ -70,7 +71,7 @@ const routes = [
             featured: Joi.boolean().optional(),
             photos: Joi.array().items([{
               title: Joi.string().required(),
-              url: Joi.string().required()
+              file: Joi.string().required()
             }])
           } 
         }
@@ -108,7 +109,7 @@ const routes = [
             featured: Joi.boolean().optional(),
             photos: Joi.array().items([{
               title: Joi.string().optional(),
-              url: Joi.string().optional()
+              file: Joi.string().optional()
             }])
           } 
         }
@@ -143,7 +144,7 @@ const routes = [
               featured: Joi.boolean().optional(),
               photos: Joi.array().items([{
                 title: Joi.string().required(),
-                url: Joi.string().required()
+                file: Joi.string().required()
               }])
             } 
           }

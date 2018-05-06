@@ -4,7 +4,7 @@ import Joi         from "joi";
 const routes = [
   {
     method: 'GET',
-    path: '/product/images/{filename}',
+    path: '/public/product/images/{filename}',
     handler: {
       file: function(req) {
         return `/app/upload/${req.params.filename}`

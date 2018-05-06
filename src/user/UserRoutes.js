@@ -8,6 +8,9 @@ const routes = [
     handler: Controller.createUser,
     options: {
       validate: {
+        headers: Joi.object({
+          Authorization: Joi.string()
+        }).unknown(),
         payload: {
           user: {
             username: Joi.string().required(),

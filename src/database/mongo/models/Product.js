@@ -31,7 +31,7 @@ class Product extends Model {
           type: String,
           required: true
         },
-        url: {
+        file: {
           type: String,
           required: true
         },

@@ -38,7 +38,7 @@ class Server {
         title: "Kung Fighters API documentation",
         version: '0.1'
       },
-      host: `localhost:${process.env.SERVER_PORT}`
+      host: `localhost:${process.env.SERVER_PORT}`,
     }
 
     this._server = Hapi.server(hapiOptions);
