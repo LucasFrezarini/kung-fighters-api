@@ -25,19 +25,39 @@ class ClientController {
    */
   async login(req, res) {
 
-    try{
+    try {
       const login = await ClientService.login(req.payload.email, req.payload.password);
 
       if(!login.success) return res.response({msg: "Email e/ou senha inválidos!"}).code(401);
 
       const token = await Auth.generateToken(login.data);
 
-      return res.response({msg: "Login realizado com sucesso!", token: token}).code(200);
+      return res.response({msg: "Login realizado com sucesso!", token: token, client: {
+        name: login.data.name,
+        email: req.payload.email
+      }}).code(200);
     } catch (error) {
       console.error(error);
       return boom.internal("Erro ao realizar o login do cliente!");
     }
+  }
 
+  /** 
+   * @param { hapi.Request } req 
+   * @param { hapi.ResponseToolkit } res 
+   */
+  async update(req, res) {
+    try {
+      const id    = req.auth.credentials.id;
+      const data  = req.payload.client;
+
+      await ClientService.updateClient(id, data);
+
+      return res.response({msg: "Cliente atualizado com sucesso!"});
+    } catch (error) {
+      console.error(error);
+      return boom.internal("Erro ao atualizar os dados do cliente!");
+    }
   }
 }
 

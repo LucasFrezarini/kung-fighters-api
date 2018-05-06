@@ -5,7 +5,7 @@ import jsonWebToken   from "jsonwebtoken";
 class Auth {
   async validate(decoded, request) {
     try {
-      if(decoded.role == "client") {
+      if(decoded.scope == "client") {
         return await this._validateClientToken(decoded, request);
       } else {
         return await this._validateUserToken(decoded, request);
@@ -18,6 +18,10 @@ class Auth {
 
   async generateToken(data) {
     return await jsonWebToken.sign(data, process.env.SECRET_KEY, { algorithm: 'HS256'});
+  }
+
+  async decodeToken(token) {
+    return jsonWebToken.decode(token);
   }
 
   async _validateUserToken(decoded, request) {
