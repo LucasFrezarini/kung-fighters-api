@@ -41,6 +41,24 @@ const routes = [
     }
   },
   {
+    method: 'GET',
+    path: '/client',
+    handler: ClientController.getClientInfos,
+    options: {
+      validate: {
+        headers: Joi.object({
+          Authorization: Joi.string()
+        }).unknown()
+      },
+      tags: ['api', 'client'],
+      description: "Retorna os dados do cliente logado",
+      auth: {
+        strategy: "jwt",
+        scope: ["client"]
+      }
+    }
+  },
+  {
     method: 'PUT',
     path: '/client',
     handler: ClientController.update,

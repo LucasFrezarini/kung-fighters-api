@@ -69,6 +69,10 @@ class ClientService {
     return await bcrypt.hash(password, salt);
   }
 
+  async getClientById(id) {
+    return await Client.findById(id);
+  }
+
 }
 
 export default new ClientService();

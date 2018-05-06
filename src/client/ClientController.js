@@ -59,6 +59,32 @@ class ClientController {
       return boom.internal("Erro ao atualizar os dados do cliente!");
     }
   }
+
+  /** 
+   * @param { hapi.Request } req 
+   * @param { hapi.ResponseToolkit } res 
+   */
+  async getClientInfos(req, res) {
+    try {
+      const id    = req.auth.credentials.id;
+
+      const client = await ClientService.getClientById(id);
+
+      return res.response({
+        client: {
+          name: client.name,
+          email: client.email,
+          cpf: client.cpf,
+          birth: client.birth,
+          createdAt: client.createdAt,
+          updatedAt: client.updatedAt
+        }
+      });
+    } catch (error) {
+      console.error(error);
+      return boom.internal("Erro ao atualizar os dados do cliente!");
+    }
+  }
 }
 
 export default new ClientController();
