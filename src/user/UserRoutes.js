@@ -18,7 +18,10 @@ const routes = [
       },
       tags: ['api', 'management', 'user'],
       description: "Cadastra um novo usuário",
-      auth: false
+      auth: {
+        strategy: "jwt",
+        scope: ['admin']
+      }
     }
   },
 ];

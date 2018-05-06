@@ -114,7 +114,11 @@ const routes = [
         }
       },
       tags: ['api', 'product', 'management'],
-      description: "Altera um produto cadastrado no sistema. Somente os campos que se deseja alterar deve ser enviado"
+      description: "Altera um produto cadastrado no sistema. Somente os campos que se deseja alterar deve ser enviado",
+      auth: {
+        strategy: "jwt",
+        scope: ['admin']
+      }
     }
   },
   {
@@ -166,7 +170,11 @@ const routes = [
           }
       },
       tags: ['api', 'management'],
-      description: "Exclui um produto do sistema"
+      description: "Exclui um produto do sistema",
+      auth: {
+        strategy: "jwt",
+        scope: ['admin']
+      }
     },
   },
   {
@@ -188,7 +196,11 @@ const routes = [
         parse: true
       },
       tags: ['api', 'management', 'upload'],
-      description: "Realiza o upload de uma imagem do produto no servidor"
+      description: "Realiza o upload de uma imagem do produto no servidor",
+      auth: {
+        strategy: "jwt",
+        scope: ['admin']
+      }
     },
   }
 ]
