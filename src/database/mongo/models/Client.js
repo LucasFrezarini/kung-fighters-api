@@ -1,5 +1,6 @@
 import Model from "./Model";
 import mongoose from "mongoose";
+import ShoppingCart from "./ShoppingCart";
 
 class Client extends Model {
 
@@ -28,7 +29,8 @@ class Client extends Model {
       password: {
         type: String,
         required: true
-      }
+      },
+      shoppingCart: ShoppingCart.getSchema()
     }, {timestamps: true})
   }
 
