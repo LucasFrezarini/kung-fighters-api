@@ -31,6 +31,30 @@ class ShoppingCartController {
       return boom.internal("Erro ao adicionar os itens no carrinho de compras!");
     }
   }
+
+  /** 
+   * @param { hapi.Request } req 
+   * @param { hapi.ResponseToolkit } res 
+   */
+  async getCart(req, res) {
+    const id = req.auth.credentials.id;
+
+    try {
+      const cart = await ShoppingCartService.getCartByClientId(id);
+      const items = cart.shoppingCart.items;
+
+      const total = items.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
+
+      return res.response({
+        cart:   cart.shoppingCart,
+        totalItems: items.length,
+        total: total
+      });
+    } catch (error) {
+      console.error(error);
+      return boom.internal("Erro ao listar os produtos do carrinho de compras!")
+    }
+  }
 }
 
 export default new ShoppingCartController();

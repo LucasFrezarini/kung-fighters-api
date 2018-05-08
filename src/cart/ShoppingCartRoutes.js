@@ -25,6 +25,24 @@ const routes = [
         scope: ["client"]
       }
     }
+  },
+  {
+    method: 'GET',
+    path: '/client/cart',
+    handler: ShoppingCartController.getCart,
+    options: {
+      validate: {
+        headers: Joi.object({
+          Authorization: Joi.string()
+        }).unknown()
+      },
+      tags: ['api', 'client'],
+      description: "Lista os itens do carrinho de compras do cliente logado",
+      auth: {
+        strategy: "jwt",
+        scope: ["client"]
+      }
+    }
   }
 ];
 

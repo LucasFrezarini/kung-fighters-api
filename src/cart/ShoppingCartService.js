@@ -11,6 +11,10 @@ class ShoppingCartService {
       }
     });
   }
+
+  async getCartByClientId(id) {
+    return Client.findById(id, {"shoppingCart.items": 1})
+  }
 }
 
 export default new ShoppingCartService();
