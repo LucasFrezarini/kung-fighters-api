@@ -16,6 +16,16 @@ class ShoppingCartService {
   async getCartByClientId(id) {
     return Client.findById(id, {"shoppingCart.items": 1})
   }
+
+  async removeItem(clientId, itemId) {
+    return Client.findByIdAndUpdate(clientId, {
+      $pull: {
+        "shoppingCart.items": {
+          _id: itemId
+        }
+      }
+    });
+  }
 }
 
 export default new ShoppingCartService();

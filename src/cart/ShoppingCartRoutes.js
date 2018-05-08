@@ -43,6 +43,28 @@ const routes = [
         scope: ["client"]
       }
     }
+  },
+  {
+    method: 'DELETE',
+    path: '/client/cart/{id}',
+    handler: ShoppingCartController.removeItem,
+    options: {
+      validate: {
+        headers: Joi.object({
+          Authorization: Joi.string()
+        }).unknown(),
+
+        params: {
+          id: Joi.string().required()
+        }
+      },
+      tags: ['api', 'client'],
+      description: "Remove um item do carrinho de compras",
+      auth: {
+        strategy: "jwt",
+        scope: ["client"]
+      }
+    }
   }
 ];
 

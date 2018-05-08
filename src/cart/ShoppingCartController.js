@@ -55,6 +55,23 @@ class ShoppingCartController {
       return boom.internal("Erro ao listar os produtos do carrinho de compras!")
     }
   }
+
+  /** 
+   * @param { hapi.Request } req 
+   * @param { hapi.ResponseToolkit } res 
+   */
+  async removeItem(req, res) {
+    const clientId  = req.auth.credentials.id; 
+    const itemId    = req.params.id;
+
+    try {
+      await ShoppingCartService.removeItem(clientId, itemId);
+      return res.response({msg: "Item removido com sucesso!"});
+    } catch (error) {
+      console.error(error);
+      return boom.internal("Erro ao remover o produto no carrinho de compras")
+    }
+  }
 }
 
 export default new ShoppingCartController();
