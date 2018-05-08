@@ -65,6 +65,30 @@ const routes = [
         scope: ["client"]
       }
     }
+  },
+  {
+    method: 'PATCH',
+    path: '/client/cart/{id}',
+    handler: ShoppingCartController.updateItem,
+    options: {
+      validate: {
+        headers: Joi.object({
+          Authorization: Joi.string()
+        }).unknown(),
+        params: {
+          id: Joi.string().required()
+        },
+        payload: {
+          quantity: Joi.number().required()
+        }
+      },
+      tags: ['api', 'client'],
+      description: "Atualiza a quantidade de um item no carrinho de compras",
+      auth: {
+        strategy: "jwt",
+        scope: ["client"]
+      }
+    }
   }
 ];
 

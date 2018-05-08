@@ -26,6 +26,17 @@ class ShoppingCartService {
       }
     });
   }
+
+  async updateItem(clientId, itemId, quantity) {
+    console.log(clientId);
+    console.log(itemId);
+
+    return Client.update({"_id": clientId, "shoppingCart.items._id": itemId}, {
+      $set: {
+        'shoppingCart.items.$.quantity': quantity 
+      }
+    });
+  }
 }
 
 export default new ShoppingCartService();
