@@ -7,3 +7,8 @@ Para rodar o projeto:
 
 1. Instale o docker (https://docs.docker.com/install/) e o docker compose (https://docs.docker.com/compose/install/)
 2. Entre na pasta do projeto via terminal e rode o comando docker-compose up.
+
+# Documentação
+
+Para acessar a documentação da API, basta subir o projeto e entrar na rota /documentation, a partir da url do projeto. 
+Por default, está configurado para rodar no localhost:4000/documentation.
