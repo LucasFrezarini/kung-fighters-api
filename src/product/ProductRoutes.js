@@ -11,7 +11,6 @@ const routes = [
         query: {
           name: Joi.string().optional(),
           category: Joi.string().optional(),
-          subcategory: Joi.string().optional(),
           featured: Joi.boolean().optional(),
           price: Joi.object().keys({
             min: Joi.number().optional(),
@@ -61,10 +60,7 @@ const routes = [
         payload: {
           product: {
             name: Joi.string().min(3).required(),
-            category: Joi.object().keys({
-              name: Joi.string().required(),
-              subcategory: Joi.string().optional()
-            }).required(),
+            category: Joi.string().required(),
             price: Joi.number().required(),
             model: Joi.optional(),
             description: Joi.optional(),
@@ -99,10 +95,7 @@ const routes = [
         payload: {
           product: {
             name: Joi.string().min(3).optional(),
-            category: Joi.object().keys({
-              name: Joi.string().optional(),
-              subcategory: Joi.string().optional()
-            }).optional(),
+            category: Joi.string().required(),
             price: Joi.number().optional(),
             model: Joi.optional(),
             description: Joi.optional(),
@@ -134,10 +127,7 @@ const routes = [
           payload: {
             product: {
               name: Joi.string().min(3).required(),
-              category: Joi.object().keys({
-                name: Joi.string().required(),
-                subcategory: Joi.string().optional()
-              }).required(),
+              category: Joi.string().required(),
               price: Joi.number().required(),
               model: Joi.optional(),
               description: Joi.optional(),

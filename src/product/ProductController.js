@@ -18,8 +18,6 @@ class ProductController {
     let filters = {
       name:     req.query.name ? new RegExp(req.query.name, "i") : null,
       model:    req.query.model? new RegExp(req.query.model, "i") : null,
-      'category.name': req.query.category ? new RegExp(req.query.category, "i") : null,
-      'category.subcategory': req.query.subcategory? new RegExp(req.query.subcategory, "i") : null,
       featured: req.query.featured,
       createdAt: {
         $gte: req.query.minDate ? req.query.minDate : new Date(1986, 1, 1),

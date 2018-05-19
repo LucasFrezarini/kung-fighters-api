@@ -14,11 +14,8 @@ class Product extends Model {
         required: true
       },
       category: {
-        name: {
-          type: String,
-          required: true
-        },
-        subcategory: String
+        type: String,
+        required: true
       },
       price: {
         type: Number,
