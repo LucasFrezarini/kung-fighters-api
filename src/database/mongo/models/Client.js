@@ -18,14 +18,6 @@ class Client extends Model {
         type: String,
         required: true
       },
-      cpf: {
-        type: String,
-        required: true
-      },
-      birth: {
-        type: Date,
-        required: true
-      },
       password: {
         type: String,
         required: true

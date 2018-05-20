@@ -95,7 +95,7 @@ const routes = [
         payload: {
           product: {
             name: Joi.string().min(3).optional(),
-            category: Joi.string().required(),
+            category: Joi.string().optional(),
             price: Joi.number().optional(),
             model: Joi.optional(),
             description: Joi.optional(),

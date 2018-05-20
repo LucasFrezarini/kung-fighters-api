@@ -16,8 +16,9 @@ class ProductController {
    */
   async getPublicProductList(req, res) {
     let filters = {
-      name:     req.query.name ? new RegExp(req.query.name, "i") : null,
-      model:    req.query.model? new RegExp(req.query.model, "i") : null,
+      name:     req.query.name      ? new RegExp(req.query.name, "i")     : null,
+      model:    req.query.model     ? new RegExp(req.query.model, "i")    : null,
+      category: req.query.category  ? new RegExp(req.query.category, "i") : null,
       featured: req.query.featured,
       createdAt: {
         $gte: req.query.minDate ? req.query.minDate : new Date(1986, 1, 1),
@@ -163,7 +164,7 @@ class ProductController {
 
           const ret = {
             filename: data.image.hapi.filename,
-            path: `/product/images/${name}.${extension}`,
+            path: `/public/product/images/${name}.${extension}`,
             headers: data.image.hapi.headers
           }
 
