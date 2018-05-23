@@ -2,7 +2,7 @@ import Client from "../database/mongo/models/Client";
 
 class ShoppingCartService {
   async addProductToCart(id, product, quantity) {
-    const exists = Client.findById(id).shoppingCart.items;
+   // const exists = Client.findById(id).shoppingCart.items;
     return Client.findByIdAndUpdate(id, {
       $addToSet: { 
         "shoppingCart.items": {

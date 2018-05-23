@@ -41,6 +41,15 @@ class ShoppingCartController {
 
     try {
       const cart = await ShoppingCartService.getCartByClientId(id);
+
+      if(!cart.shoppingCart || !cart.shoppingCart.items || cart.shoppingCart.items.length <= 0) {
+        return res.response({
+          cart:   [],
+          totalItems: 0,
+          total: 0
+        });
+      }
+
       const items = cart.shoppingCart.items;
 
       const total = items.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
