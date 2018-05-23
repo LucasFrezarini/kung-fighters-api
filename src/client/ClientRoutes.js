@@ -69,8 +69,6 @@ const routes = [
           client: {
             name: Joi.string().min(3).required(),
             email: Joi.string().required(),
-            cpf: Joi.string().required(),
-            birth: Joi.date().required(),
             password: Joi.string().required(),
           }
         }
@@ -96,8 +94,6 @@ const routes = [
           client: {
             name: Joi.string().min(3).optional(),
             email: Joi.string().optional(),
-            cpf: Joi.string().optional(),
-            birth: Joi.date().optional(),
             password: Joi.string().optional(),
           }
         }

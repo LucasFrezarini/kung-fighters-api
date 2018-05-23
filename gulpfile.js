@@ -24,6 +24,7 @@ gulp.task('nodemon', ['compile'], function() {
     script: "dist/index.js",
     watch: [
       'src'
-    ]
+    ],
+    nodeArgs: ['--require', 'dotenv/config']
   })
 });
