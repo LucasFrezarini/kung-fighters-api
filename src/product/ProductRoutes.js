@@ -74,10 +74,7 @@ const routes = [
       },
       tags: ['api', 'product', 'management'],
       description: "Altera um produto cadastrado no sistema. Todos os dados devem ser repassados novamente",
-      auth: {
-        strategy: "jwt",
-        scope: ['admin']
-      }
+      auth: false
     }
   },
   {
@@ -109,10 +106,7 @@ const routes = [
       },
       tags: ['api', 'product', 'management'],
       description: "Altera um produto cadastrado no sistema. Somente os campos que se deseja alterar deve ser enviado",
-      auth: {
-        strategy: "jwt",
-        scope: ['admin']
-      }
+      auth: false
     }
   },
   {
@@ -141,10 +135,7 @@ const routes = [
       },
       tags: ['api', 'management'],
       description: "Cria um novo produto no sistema",
-      auth: {
-        strategy: "jwt",
-        scope: ['admin']
-      }
+      auth: false
     }
   },
   {
@@ -162,10 +153,7 @@ const routes = [
       },
       tags: ['api', 'management'],
       description: "Exclui um produto do sistema",
-      auth: {
-        strategy: "jwt",
-        scope: ['admin']
-      }
+      auth: false
     },
   },
   {
@@ -188,10 +176,7 @@ const routes = [
       },
       tags: ['api', 'management', 'upload'],
       description: "Realiza o upload de uma imagem do produto no servidor",
-      auth: {
-        strategy: "jwt",
-        scope: ['admin']
-      }
+      auth: false
     },
   }
 ]
