@@ -164,6 +164,7 @@ class ProductController {
 
           const ret = {
             filename: data.image.hapi.filename,
+            uploadName: `${name}.${extension}`,
             path: `/public/product/images/${name}.${extension}`,
             headers: data.image.hapi.headers
           }
